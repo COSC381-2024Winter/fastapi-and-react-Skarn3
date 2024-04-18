@@ -24,7 +24,6 @@ function App() {
           return response.json();
         })
         .then(data => {
-          console.log(data);
           setMovieDetails(data);
           setError(null);
         })
@@ -38,6 +37,7 @@ function App() {
     }
   }, [movieId]);
 
+
   return (
     <div className="App">
       <div className="TextField-container">
@@ -49,6 +49,14 @@ function App() {
           className="TextField"
         />
       </div>
+      {error && <p>{error}</p>}
+      {movieDetails && (
+        <div className="movie-details">
+          <h2>Movie Details</h2>
+          <p><strong>Name:</strong> {movieDetails.name}</p>
+          <p><strong>Cast:</strong> {movieDetails.cast.join(', ')}</p>
+        </div>
+      )}
     </div>
   );
 }
